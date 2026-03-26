@@ -62,37 +62,35 @@ The pipeline automatically logs data validation, quality checks, and provenance 
 
 ```mermaid
 flowchart TD
+ flowchart TD
   %% Ingestion Layer
   subgraph Ingestion
-    A1[CSV / JSON / API / Streaming] --> ADLS1[ADLS Bronze Layer]
-    EH[Event Hubs / IoT Hub] --> ADLS1
+    A1["CSV JSON API Streaming"] --> ADLS1["ADLS Bronze"]
+    EH["Event Hubs IoT Hub"] --> ADLS1
   end
 
   %% Processing Layer
   subgraph Processing
-    ADLS1 --> DBX1[Databricks - Validate & Clean]
-    DBX1 --> ADLS2[ADLS Silver Layer]
-    ADLS2 --> DBX2[Databricks - Transform & Integrate]
-    DBX2 --> ADLS3[ADLS Gold Layer]
+    ADLS1 --> DBX1["Databricks Validate Clean"]
+    DBX1 --> ADLS2["ADLS Silver"]
+    ADLS2 --> DBX2["Databricks Transform Integrate"]
+    DBX2 --> ADLS3["ADLS Gold"]
   end
 
-  %% Orchestration & Security
+  %% Orchestration and Security
   subgraph Orchestration_and_Security
-    DF[Azure Data Factory] -.-> DBX1
+    DF["Azure Data Factory"] -.-> DBX1
     DF -.-> DBX2
-    KV[Key Vault] -.-> DBX1
+    KV["Key Vault"] -.-> DBX1
     KV -.-> DF
-    AAD[Azure AD] -.-> DBX1
+    AAD["Azure AD"] -.-> DBX1
     AAD -.-> DF
   end
 
-  %% Analytics & Governance
+  %% Analytics and Governance
   subgraph Analytics_and_Governance
-    ADLS3 --> PBI[Power BI / Streamlit]
-    ADLS3 --> SYN[Azure Synapse]
-    ADLS3 --> PUR[Azure Purview]
-    DBX2 --> MON[Azure Monitor / Log Analytics]
-  end
+    ADLS3 --> PBI["Power BI Streamlit"]
+    AD
 ```
 
 
