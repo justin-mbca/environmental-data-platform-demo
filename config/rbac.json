@@ -1,0 +1,12 @@
+{
+  "roles": {
+    "admin": ["read", "write", "delete"],
+    "data_engineer": ["read", "write"],
+    "analyst": ["read"]
+  },
+  "users": {
+    "alice": "admin",
+    "bob": "data_engineer",
+    "carol": "analyst"
+  }
+}

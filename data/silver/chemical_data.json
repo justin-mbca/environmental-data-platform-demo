@@ -1,0 +1,1 @@
+[{"cas_number": "50-00-0", "chemical": "Formaldehyde", "toxicity": 0.5, "unit": "mg/l", "source": "json"}, {"cas_number": "75-07-0", "chemical": "Acetaldehyde", "toxicity": 0.3, "unit": "mg/l", "source": "json"}, {"cas_number": "67-56-1", "chemical": "Methanol", "toxicity": 1.0, "unit": "mg/l", "source": "json"}]

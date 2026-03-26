@@ -1,0 +1,6 @@
+{
+  "secrets": {
+    "db_connection_string": "mock-connection-string",
+    "api_key": "mock-api-key"
+  }
+}
