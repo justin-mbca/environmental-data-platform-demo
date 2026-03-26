@@ -62,7 +62,6 @@ The pipeline automatically logs data validation, quality checks, and provenance 
 
 ```mermaid
 flowchart TD
- flowchart TD
   %% Ingestion Layer
   subgraph Ingestion
     A1["CSV JSON API Streaming"] --> ADLS1["ADLS Bronze"]
@@ -90,7 +89,10 @@ flowchart TD
   %% Analytics and Governance
   subgraph Analytics_and_Governance
     ADLS3 --> PBI["Power BI Streamlit"]
-    AD
+    ADLS3 --> SYN["Azure Synapse"]
+    ADLS3 --> PUR["Azure Purview"]
+    DBX2 --> MON["Azure Monitor Log Analytics"]
+  end
 ```
 
 
