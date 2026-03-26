@@ -96,6 +96,59 @@ flowchart TD
 ```
 
 
+## Cloud Setup Commands (Azure CLI)
+
+### 1. Create a Resource Group
+```bash
+az group create --name myResourceGroup --location eastus
+```
+
+### 2. Provision Azure Data Lake Storage (ADLS Gen2)
+```bash
+az storage account create --name mystorageacct --resource-group myResourceGroup --location eastus --sku Standard_LRS --kind StorageV2 --hierarchical-namespace true
+az storage container create --account-name mystorageacct --name bronze
+az storage container create --account-name mystorageacct --name silver
+az storage container create --account-name mystorageacct --name gold
+```
+
+### 3. Create Azure SQL Database
+```bash
+az sql server create --name my-sql-server --resource-group myResourceGroup --location eastus --admin-user myadmin --admin-password MyPassword123!
+az sql db create --resource-group myResourceGroup --server my-sql-server --name emdatawarehouse --service-objective S0
+```
+
+### 4. Deploy Azure Databricks Workspace
+```bash
+az databricks workspace create --resource-group myResourceGroup --name myDatabricksWS --location eastus --sku standard
+```
+
+### 5. Set Up Azure Key Vault
+```bash
+az keyvault create --name myKeyVault --resource-group myResourceGroup --location eastus
+az keyvault secret set --vault-name myKeyVault --name "DbPassword" --value "MyPassword123!"
+```
+
+### 6. Create Azure Data Factory
+```bash
+az datafactory create --resource-group myResourceGroup --factory-name myDataFactory --location eastus
+```
+
+### 7. (Optional) Set Up Azure Synapse Analytics
+```bash
+az synapse workspace create --name mySynapseWS --resource-group myResourceGroup --storage-account mystorageacct --file-system gold --location eastus --sql-admin-login-user myadmin --sql-admin-login-password MyPassword123!
+```
+
+### 8. (Optional) Set Up Azure Purview
+```bash
+az purview account create --name myPurviewAcct --resource-group myResourceGroup --location eastus
+```
+
+### 9. (Optional) Set Up Azure Active Directory for RBAC
+- Managed via Azure Portal or with `az ad` commands.
+
+**Note:** Replace resource names, locations, and passwords as needed. You must have the Azure CLI installed and be logged in (`az login`).
+# Azure-Style Environmental Data Platform
+
 ## ETL Pipeline Diagram (Mermaid)
 
 ```mermaid
